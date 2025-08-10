@@ -37,10 +37,10 @@ jobs:
         shell: bash
         run: |
           if [ -f "package.json" ]; then
-            npx electron-builder --win --x64
+            npx electron-builder --win --x64 --publish=never
           else
             cd Project/EnchantReaderDesktop
-            npx electron-builder --win --x64
+            npx electron-builder --win --x64 --publish=never
           fi
 
       - name: Upload artifact
