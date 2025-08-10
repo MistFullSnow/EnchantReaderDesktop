@@ -19,9 +19,11 @@
     "electron": "28.3.3",
     "electron-builder": "24.13.3"
   },
+  "optionalDependencies": {},
   "build": {
     "appId": "com.enchantreader.desktop",
     "productName": "EnchantReader",
+    "npmRebuild": false,
     "files": [
       "src/**",
       "assets/**",
