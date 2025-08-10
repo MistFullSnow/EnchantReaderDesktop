@@ -5,6 +5,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build-windows:
@@ -23,11 +24,11 @@ jobs:
         run: |
           if [ -f "package.json" ]; then
             echo "Using repo root"
-            npm ci --no-audit --no-fund
+            npm install --no-audit --no-fund
           elif [ -f "Project/EnchantReaderDesktop/package.json" ]; then
             echo "Using Project/EnchantReaderDesktop"
             cd Project/EnchantReaderDesktop
-            npm ci --no-audit --no-fund
+            npm install --no-audit --no-fund
           else
             echo "package.json not found" && exit 1
           fi
