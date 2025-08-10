@@ -18,18 +18,34 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
+      - name: Install dependencies (root or nested)
+        shell: bash
         run: |
-          cd Project/EnchantReaderDesktop
-          npm install --no-audit --no-fund
+          if [ -f "package.json" ]; then
+            echo "Using repo root"
+            npm ci --no-audit --no-fund
+          elif [ -f "Project/EnchantReaderDesktop/package.json" ]; then
+            echo "Using Project/EnchantReaderDesktop"
+            cd Project/EnchantReaderDesktop
+            npm ci --no-audit --no-fund
+          else
+            echo "package.json not found" && exit 1
+          fi
 
-      - name: Build installer
+      - name: Build installer (root or nested)
+        shell: bash
         run: |
-          cd Project/EnchantReaderDesktop
-          npx electron-builder --win --x64
+          if [ -f "package.json" ]; then
+            npx electron-builder --win --x64
+          else
+            cd Project/EnchantReaderDesktop
+            npx electron-builder --win --x64
+          fi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: EnchantReader-Desktop-Installer
-          path: Project/EnchantReaderDesktop/dist/*
+          path: |
+            dist/*
+            Project/EnchantReaderDesktop/dist/*
