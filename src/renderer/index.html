@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline';" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EnchantReader</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="root">
+    <header class="topbar">
+      <h1>EnchantReader</h1>
+      <button id="openBtn">Select PDF</button>
+    </header>
+    <div class="layout">
+      <aside id="toc" class="glass small"></aside>
+      <main id="content" class="glass large">
+        <div id="welcome">Select a PDF to begin…</div>
+      </main>
+    </div>
+    <canvas id="bg"></canvas>
+  </div>
+
+  <script type="module" src="renderer.js"></script>
+</body>
+</html>

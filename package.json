@@ -1,0 +1,47 @@
+{
+  "name": "enchantreader-desktop",
+  "version": "1.0.0",
+  "description": "A magical glass-like desktop reader for your own PDF of Harry Potter and the Cursed Child.",
+  "main": "src/main/main.js",
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build": "echo 'Use npm run dist to create installer'",
+    "dist": "electron-builder --win --x64"
+  },
+  "dependencies": {
+    "electron": "28.3.3",
+    "pdfjs-dist": "3.11.174"
+  },
+  "devDependencies": {
+    "electron-builder": "24.13.3"
+  },
+  "build": {
+    "appId": "com.enchantreader.desktop",
+    "productName": "EnchantReader",
+    "files": [
+      "src/**",
+      "assets/**",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false
+    }
+  }
+}
